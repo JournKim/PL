@@ -1,0 +1,9 @@
+﻿  main.cpp
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(174): warning C4101: 'c': unreferenced local variable
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(186): warning C4101: 'c': unreferenced local variable
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(96): warning C4700: uninitialized local variable 'n' used
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(182): warning C4700: uninitialized local variable 'Term' used
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(170): warning C4700: uninitialized local variable 'Factor' used
+c:\users\journey\documents\visual studio 2015\projects\programminglanguage\programminglanguage\main.cpp(195): warning C4700: uninitialized local variable 'Expr' used
+  ProgrammingLanguage.vcxproj -> c:\users\journey\documents\visual studio 2015\Projects\ProgrammingLanguage\Debug\ProgrammingLanguage.exe
+  ProgrammingLanguage.vcxproj -> c:\users\journey\documents\visual studio 2015\Projects\ProgrammingLanguage\Debug\ProgrammingLanguage.pdb (Full PDB)
