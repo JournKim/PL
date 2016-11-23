@@ -63,8 +63,7 @@ char nextChar(void) {
 int charToInt(char c) {
 	int charToINT;
 
-	////????????????????????????
-	if (c <'0' && c > '9')
+	if (c <'0' || c > '9')
 	{
 		printf("charToint: %c is not a digit", c);
 		charToINT = 0;
@@ -90,8 +89,18 @@ struct node *binopNode(char opor, struct node *lopand, struct node *ropand)
 {
 	struct node *n;
 
+	if (lopand == NULL || ropand == NULL)
+		n = NULL;
+	else {
+		n = (struct node *)malloc(sizeof(struct node));
+		n->tag = binop;
+		n->uOperator = ' ';
+		n->bOperator = opor;
+		n->leftOperand = lopand;
+		n->rightOperand = ropand;
+		n->operand = NULL;
 
-	/* do something */
+	}
 
 	return(n);
 }
@@ -161,7 +170,10 @@ struct node *factor(void) {
 		break;
 
 	case '-': // -factor
-		
+		//c = nextChar();
+		Factor = unopNode('-',factor());
+		//Factor = factor();
+		//Factor->num = -Factor->num;
 		break;
 
 	case '0': // number
@@ -174,18 +186,18 @@ struct node *factor(void) {
 	case '7':
 	case '8':
 	case '9':
-		Factor->tag = number;
-		Factor->num = getNum(c);
+		n = getNum(c);
+		Factor = numberNode(n);
 		break;
 	default: // exception
 		break;
 	}
-	if (c == '-') {
-		c = getChar();
-		n = -getNum(c);
-	}
-	printf("factor : %d\n", n);
-
+	/*
+	if(Factor->tag == number)
+		printf("factor : %d\n", Factor->num);
+	if(Factor->tag == unop)
+		printf("factor : %d\n", Factor->operand->num);
+*/
 	return(Factor);
 }
 
@@ -194,9 +206,22 @@ struct node *term(void) {
 	struct node *n, *Term;
 
 	n = factor();
-
-	/* do something */
-
+	c = nextChar();
+	switch (c)
+	{
+	case '*'://factor * term
+		//c = nextChar();
+		Term = binopNode(c, n, term());
+		break;
+	case '/': // factor / term
+		//c = nextChar();
+		Term = binopNode(c, n, term());
+		break;
+	default: // factor
+		ungetChar(c);
+		Term = n;
+		break;
+	}
 
 	return(Term);
 }
@@ -206,10 +231,22 @@ struct node *expr(void) {
 	struct node *n, *Expr;
 
 	n = term();
-
-	/* do something */
-
-
+	c = nextChar();
+	switch (c)
+	{
+	case '+': // term + expr
+		//c = nextChar();
+		Expr = binopNode(c, n, expr());
+		break;
+	case '-': // term - expr
+		//c = nextChar();
+		Expr = binopNode(c, n, expr());
+		break;
+	default: // term
+		ungetChar(c);
+		Expr = n;
+		break;
+	}
 
 	return(Expr);
 }
