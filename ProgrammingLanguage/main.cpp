@@ -57,6 +57,8 @@ char nextChar(void) {
 	char c;
 
 	c = getChar();
+	if (c == ' ')
+		c = getChar();
 	return(c);
 }
 
@@ -167,8 +169,11 @@ struct node *factor(void) {
 	switch (c)
 	{
 	case '(': // (expr)
+		Factor = expr();
+		c = nextChar();
+		if (c == ')')
+			break;
 		break;
-
 	case '-': // -factor
 		//c = nextChar();
 		Factor = unopNode('-',factor());
