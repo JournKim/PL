@@ -158,27 +158,21 @@ void PrintTree(struct node *n) {
 	ptree(n, 0);
 }
 
-// in Progress...
 struct node *factor(void) {
 	char c;
 	struct node *Factor;
 	int n;
 	c = nextChar();
 	
-	/* do something */
 	switch (c)
 	{
 	case '(': // (expr)
 		Factor = expr();
 		c = nextChar();
-		if (c == ')')
-			break;
+		
 		break;
 	case '-': // -factor
-		//c = nextChar();
 		Factor = unopNode('-',factor());
-		//Factor = factor();
-		//Factor->num = -Factor->num;
 		break;
 
 	case '0': // number
